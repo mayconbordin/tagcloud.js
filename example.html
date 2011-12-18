@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+	<style>
+		v\:* {
+			behavior: url(#default#VML);
+			position: absolute;
+		}
+	</style>
+	<script src="tagcloud.js"></script>
+	<script>
+	window.onload = function() {
+		var tagcloud = new TagCloud(document.getElementById('tagcloud'),{sortstyle:"descending"});
+		tagcloud.addNode('the',13,1);
+		tagcloud.addNode('quick',12,1);
+		tagcloud.addNode('brown',15,1);
+		tagcloud.addNode('fox',20,1);
+		tagcloud.addNode('terra',200,1);
+		
+		for (var i=1; i<100; i++)
+			tagcloud.addNode('terra', Math.random() * i, 2);
+		
+		//...
+		tagcloud.draw();
+	};
+	</script>
+</head>
+<body>
+	<div id="tagcloud" style="position: relative; width: 600px; height: 600px; overflow: hidden;"></div>
+</body>
+</html>
