@@ -1,4 +1,9 @@
 /**
+ * tagcloud.js
+ * Modified by: Maycon Bordin <mayconbordin@gmail.com>
+ * Project url: https://github.com/mayconbordin/tagcloud.js
+ * =============================================================================
+ *
  *	 __                                  ___                         __     
  *	/\ \__                              /\_ \                       /\ \    
  *	\ \ ,_\     __        __       ___  \//\ \      ___    __  __   \_\ \   
@@ -9,13 +14,13 @@
  *	                      /\____/                                            
  *	                      \_/__/    
  *	                      
- *	      tagcloud.js v1.0 written by Anson Parker (http://phasetwo.org/)
- *	      This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 2.5 License
- *	      Visit http://creativecommons.org/licenses/by-nc-sa/2.5/
- *	      See http://phasetwo.org/post/a-better-tag-cloud.html for usage
+ *	tagcloud.js v1.0 written by Anson Parker (http://phasetwo.org/)
+ *	This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 2.5 License
+ *	Visit http://creativecommons.org/licenses/by-nc-sa/2.5/
+ *	See http://phasetwo.org/post/a-better-tag-cloud.html for usage
  *	      
  *
- * Usage: new TagCloud(container, {sortstyle, colors, highlightcolors, url})
+ * =============================================================================
  *
  * @param container: This is the container element the tag cloud will be drawn into. As in the example above, pass a reference to the element itself, and not just the id.
  *
@@ -46,7 +51,8 @@ TagCloud.prototype = {
 		url: 'http://phasetwo.org/pennypacker/tag/',
 		width: 600,
 		height: 400,
-		duration: 20
+		duration: 20,
+		scale: 100
 	},
 	
 	initialize: function(container, options) {
@@ -88,8 +94,8 @@ TagCloud.prototype = {
 		this.ctx 			= this.canvas.getContext('2d');
 	},
 	
-	addNode: function(name, size, group) {
-		this.nodes.push(new TagCloud.Node(name, size, group));
+	addNode: function(name, size) {
+		this.nodes.push(new TagCloud.Node(name, size));
 	},
 	getNode: function(idx) {
 		return this.nodes[idx];
@@ -141,8 +147,8 @@ TagCloud.prototype = {
 			thisObj._mpos(e);
 		};
 		
-		var maxsize = this._findMaxSize();
-		this.scale 	  = 30 / (Math.sqrt(maxsize / Math.PI) * 2);
+		var maxsize   = this._findMaxSize();
+		this.scale 	  = this.options.scale / (Math.sqrt(maxsize / Math.PI) * 2);
 		this.gridsize = Math.sqrt(maxsize / Math.PI) * 2 * this.scale;
 	
 		if (this.sortstyle.indexOf('asc') == 0) {
@@ -396,8 +402,7 @@ TagCloud.Circle = function(x, y, r, c) {
 	this.c = c;
 };
 
-TagCloud.Node = function(name, size, group) {
+TagCloud.Node = function(name, size) {
 	this.size  = size;
 	this.name  = name;
-	this.group = group;
 };

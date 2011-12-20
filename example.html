@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+<html>
 <head>
 	<style>
 		v\:* {
@@ -14,17 +14,18 @@
 	window.onload = function() {
 		var tagcloud = new TagCloud('tagcloud', {
 			sortstyle: "descending",
-			duration: 0
+			duration: 20,
+			scale: 50
 		});
 		
-		tagcloud.addNode('the',13,1);
-		tagcloud.addNode('quick',12,1);
-		tagcloud.addNode('brown',15,1);
-		tagcloud.addNode('fox',20,1);
-		tagcloud.addNode('terra',200,1);
+		tagcloud.addNode('the',13);
+		tagcloud.addNode('quick',12);
+		tagcloud.addNode('brown',15);
+		tagcloud.addNode('fox',20);
+		tagcloud.addNode('terra',200);
 		
 		for (var i=1; i<100; i++)
-			tagcloud.addNode('terra', Math.random() * i, 2);
+			tagcloud.addNode('test', Math.random() * i);
 		
 		//...
 		tagcloud.draw();

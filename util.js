@@ -8,21 +8,6 @@ var Util = {
 		for (var style in styles)
 			el.style[style] = styles[style];
 	},
-	getPosition: function(el) {
-		var x, y = 0;
-
-		x = el.offsetLeft;
-		y = el.offsetTop;
-		el = el.offsetParent;
-		
-		while(el != null) {
-			x = parseInt(x) + parseInt(el.offsetLeft);
-			y = parseInt(y) + parseInt(el.offsetTop);
-			el = el.offsetParent;
-		}
-
-		return {top: y, left: x};
-	},
 	
 	/* yahoo event bundled */
 	/* Copyright (c) 2006, Yahoo! Inc. All rights reserved.
