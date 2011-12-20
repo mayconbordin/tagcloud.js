@@ -7,10 +7,16 @@
 			position: absolute;
 		}
 	</style>
+	
+	<script src="util.js"></script>
 	<script src="tagcloud.js"></script>
 	<script>
 	window.onload = function() {
-		var tagcloud = new TagCloud(document.getElementById('tagcloud'),{sortstyle:"descending"});
+		var tagcloud = new TagCloud('tagcloud', {
+			sortstyle: "descending",
+			duration: 0
+		});
+		
 		tagcloud.addNode('the',13,1);
 		tagcloud.addNode('quick',12,1);
 		tagcloud.addNode('brown',15,1);
@@ -26,6 +32,6 @@
 	</script>
 </head>
 <body>
-	<div id="tagcloud" style="position: relative; width: 600px; height: 600px; overflow: hidden;"></div>
+	<div id="tagcloud" style="position: relative; width: 1000px; height: 600px; overflow: hidden;"></div>
 </body>
 </html>

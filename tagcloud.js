@@ -45,7 +45,8 @@ TagCloud.prototype = {
 		highlightcolors: [{r:172,g:207,b:175}],
 		url: 'http://phasetwo.org/pennypacker/tag/',
 		width: 600,
-		height: 400
+		height: 400,
+		duration: 20
 	},
 	
 	initialize: function(container, options) {
@@ -198,11 +199,6 @@ TagCloud.prototype = {
 	},
 	
 	_itDraw: function() {
-		//for (var i = 0; i < this.drawQueue.length; i++) {
-		//	this._drawCircle(this.drawQueue[i]);
-		//}
-	
-		
 		var nd = this.drawQueue.shift();
 		
 		if (nd) {
@@ -210,7 +206,7 @@ TagCloud.prototype = {
 			this._drawCircle(nd);
 			this.timeout = setTimeout(function() {
 				thisObj._itDraw();
-			}, 20);
+			}, this.options.duration);
 		}
 		
 	},
