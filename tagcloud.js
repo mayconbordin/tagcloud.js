@@ -22,15 +22,14 @@
  *
  * =============================================================================
  *
- * @param container: This is the container element the tag cloud will be drawn into. As in the example above, pass a reference to the element itself, and not just the id.
- *
- * @param sortstyle: There are 4 sorting options: "random", "ascending", descending" and "". This determines the order the tags will be drawn in. For example, "ascending" will cause the smallest tags to be drawn first resulting in the larger tags being furtherest from the center of the cloud. Sending through a blank string will render the tags in the order they were added.
- *
- * @param colors: This is a single colour object, or an array of colours. If you pass an array, the each tags colour will be randomly selected from that array. A colour should be passed through as {r:0,g:0,b:0}. The number can be between 0 and 255. The previous example would result in black circles. For red circles you would send {r:255,g:0,b:0} or for a mix of blue and yellow circles, pass through the array [{r:255,g:255,b:0},{r:0,g:0,b:255}].
- *
- * @param highlightcolors: Again, a single colour object, or an array of colours. This is the color or colors the circles will turn when you hover over them with the mouse.
- *
- * @param url: The base url clicking on a tag will link to. The name of the tag will be appended to this stub. So to link to a Technorati tag page you would pass through "http://technorati.com/tag/"
+ * @param {element|string} container This is the container element the tag cloud will be drawn into. Pass a reference to the element itself, or just the id string.
+ * @param {object} options The allowed options are:
+ * 		sortstyle: There are 4 sorting options: "random", "ascending", descending" and "". This determines the order the tags will be drawn in. For example, "ascending" will cause the smallest tags to be drawn first resulting in the larger tags being furtherest from the center of the cloud. Sending through a blank string will render the tags in the order they were added.
+ * 		colors: This is a single colour object, or an array of colours. If you pass an array, the each tags colour will be randomly selected from that array. A colour should be passed through as {r:0,g:0,b:0}. The number can be between 0 and 255. The previous example would result in black circles. For red circles you would send {r:255,g:0,b:0} or for a mix of blue and yellow circles, pass through the array [{r:255,g:255,b:0},{r:0,g:0,b:255}].
+ * 		highlightcolors: Again, a single colour object, or an array of colours. This is the color or colors the circles will turn when you hover over them with the mouse.
+ * 		url: The base url clicking on a tag will link to. The name of the tag will be appended to this stub. So to link to a Technorati tag page you would pass through "http://technorati.com/tag/".
+ * 		duration: the interval in milliseconds between the creation of each node.
+ * 		scale: the scale of the bubbles.
  *
  */
 var TagCloud = function(container, options) {
@@ -49,8 +48,6 @@ TagCloud.prototype = {
 		],
 		highlightcolors: [{r:172,g:207,b:175}],
 		url: 'http://phasetwo.org/pennypacker/tag/',
-		width: 600,
-		height: 400,
 		duration: 20,
 		scale: 100
 	},
@@ -83,15 +80,6 @@ TagCloud.prototype = {
 		this.gridsize 		= 0;
 		this.gpos 			= {};
 		this.timeout 		= null;
-	
-		this.canvas 		= document.createElement('canvas');
-		this.canvas.width 	= this.options.width;
-		this.canvas.height 	= this.options.height;
-		this.dom.appendChild(this.canvas);
-	
-		if (!this.canvas.getContext) return false;
-	
-		this.ctx 			= this.canvas.getContext('2d');
 	},
 	
 	addNode: function(name, size) {
